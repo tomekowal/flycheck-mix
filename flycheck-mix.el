@@ -3,8 +3,10 @@
 ;; Copyright (C) 2016  Tomasz Kowal
 
 ;; Author: Tomasz Kowal <tomekowal@gmail.com>
+;; Version: 1.0.0
+;; Package-Requires: ((flycheck "28-cvs") (alchemist "1.8.0"))
 ;; Keywords: Elixir flycheck mix
-;; Version: 0.0.1
+;; URL: https://github.com/tomekowal/flycheck-mix
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
