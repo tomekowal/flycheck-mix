@@ -47,7 +47,8 @@
 (require 'flycheck)
 
 (defvar flycheck-mix-enable-checking nil
-  "Enable syntax checking by compiling files. Defaults to =nil=")
+  "Enable syntax checking by compiling files.
+Defaults to =nil=.")
 
 (add-to-list 'safe-local-variable-values
              (cons 'flycheck-mix-enable-checking nil))
@@ -98,9 +99,11 @@
                             flycheck-mix-enable-checking)))
 
 (defun flycheck-mix-project-root ()
+  "Return directory where =mix.exs= is located."
   (locate-dominating-file buffer-file-name "mix.exs"))
 
 (defun flycheck-mix-cd-option ()
+  "Generate change directory command for elixir executable."
   (format "IEx.Helpers.cd(\"%s\")"
           (flycheck-mix-project-root)
           ))
@@ -114,4 +117,4 @@
   (add-to-list 'flycheck-checkers 'elixir-mix))
 
 (provide 'flycheck-mix)
-;;; elixir-flycheck-mix-compile.el ends here
+;;; flycheck-mix.el ends here
