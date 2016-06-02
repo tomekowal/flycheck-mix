@@ -21,14 +21,36 @@
 
 ;;; Commentary:
 
-;; This package adds support for Elixir mix to flycheck.  To use it, add
-;; to your init.el:
-
+;; This package adds support for Elixir mix to flycheck.
+;; To use it, add to your init.el:
+;;
 ;; (require 'flycheck-mix)
 ;; (flycheck-mix-setup)
+;;
+;; Elixir compilation uses macros and it can run arbitrary code.
+;; You should use =elixir-mix= checker only with trusted projects.
+;; To enable it for given project add directory local variable
+;; =flycheck-mix-enable-checking= and set it to =t=
+;; You can easily do it by running =M-x add-dir-local-variable=
+;; then for mode specify =elixir-mode=
+;; variable name =flycheck-mix-enable-checking=
+;; and for value =t=
+;; You can also enable it globally with
+;;
+;; (setq flycheck-mix-enable-checking t)
+;;
+;; but this is not recommended.
 
 ;;; Code:
 (require 'flycheck)
+
+(defvar flycheck-mix-enable-checking nil
+  "Enable syntax checking by compiling files. Defaults to =nil=")
+
+(add-to-list 'safe-local-variable-values
+             (cons 'flycheck-mix-enable-checking nil))
+(add-to-list 'safe-local-variable-values
+             (cons 'flycheck-mix-enable-checking t))
 
 ;; :command uses source-original, source-inplace copies the file
 ;; which makes mix throw errors
@@ -67,7 +89,8 @@
                    (flycheck-error-filename err))))
    errors)
  :modes (elixir-mode)
- :predicate (lambda () (flycheck-mix-project-root)))
+ :predicate (lambda () (and (flycheck-mix-project-root)
+                            flycheck-mix-enable-checking)))
 
 (defun flycheck-mix-project-root ()
   (locate-dominating-file buffer-file-name "mix.exs"))
