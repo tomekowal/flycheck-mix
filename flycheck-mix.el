@@ -4,7 +4,7 @@
 
 ;; Author: Tomasz Kowal <tomekowal@gmail.com>
 ;; Version: 1.0.0
-;; Package-Requires: ((flycheck "28-cvs") (alchemist "1.8.0"))
+;; Package-Requires: ((flycheck "27") (elixir-mode "1.8.0"))
 ;; Keywords: Elixir flycheck mix
 ;; URL: https://github.com/tomekowal/flycheck-mix
 
