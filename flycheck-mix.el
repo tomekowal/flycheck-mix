@@ -31,29 +31,9 @@
 ;;
 ;; Elixir compilation uses macros and it can run arbitrary code.
 ;; You should use =elixir-mix= checker only with trusted projects.
-;; To enable it for given project add directory local variable
-;; =flycheck-mix-enable-checking= and set it to =t=
-;; You can easily do it by running =M-x add-dir-local-variable=
-;; then for mode specify =elixir-mode=
-;; variable name =flycheck-mix-enable-checking=
-;; and for value =t=
-;; You can also enable it globally with
-;;
-;; (setq flycheck-mix-enable-checking t)
-;;
-;; but this is not recommended.
 
 ;;; Code:
 (require 'flycheck)
-
-(defvar flycheck-mix-enable-checking nil
-  "Enable syntax checking by compiling files.
-Defaults to =nil=.")
-
-(add-to-list 'safe-local-variable-values
-             (cons 'flycheck-mix-enable-checking nil))
-(add-to-list 'safe-local-variable-values
-             (cons 'flycheck-mix-enable-checking t))
 
 ;; :command uses source-original, source-inplace copies the file
 ;; which makes mix throw errors
@@ -95,8 +75,7 @@ Defaults to =nil=.")
                    (flycheck-error-filename err))))
    errors)
  :modes (elixir-mode)
- :predicate (lambda () (and (flycheck-mix-project-root)
-                            flycheck-mix-enable-checking)))
+ :predicate (lambda () (and (flycheck-mix-project-root))))
 
 (defun flycheck-mix-project-root ()
   "Return directory where =mix.exs= is located."
@@ -105,7 +84,7 @@ Defaults to =nil=.")
 (defun flycheck-mix-cd-option ()
   "Generate change directory command for elixir executable."
   (format "IEx.Helpers.cd(\"%s\")"
-          (flycheck-mix-project-root)
+          (shell-quote-argument (flycheck-mix-project-root))
           ))
 
 ;;;###autoload
