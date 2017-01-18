@@ -51,12 +51,13 @@
            "compile")
  :error-patterns
  ((warning line-start
-            (file-name)
-            ":"
-            line
-            ": warning: "
-            (message)
-            line-end)
+           "warning:"
+           ;; Multiline warnings
+           (message (minimal-match (one-or-more anything)))
+           (file-name "lib/" (minimal-match (one-or-more not-newline)) )
+           ":"
+           line
+           line-end)
    (error line-start
           "** ("
           (one-or-more word)
