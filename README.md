@@ -9,3 +9,6 @@ To use it, add to your init.el:
 
 Elixir compilation uses macros and it can run arbitrary code.
 You should use `elixir-mix` checker only with trusted projects.
+
+Running `mix compile` in `:dev` environment messed up live reload
+so the compilation runs in `:test` environment.

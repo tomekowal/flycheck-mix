@@ -41,10 +41,9 @@
   There are to conditions that must be true to fulfil the predicate.
   1. The project must be valid mix project with =mix.exs= file
   2. The variable =flycheck-mix-enable-checking= must be set to =t="
- :command ("MIX_ENV=test"
-           "elixir"
+ :command ("elixir"
            "-e"
-           (eval (flycheck-mix-cd-option))
+           (eval (flycheck-mix-cd-and-set-mix-env))
            "-S"
            "mix"
            "compile")
@@ -84,9 +83,9 @@
   "Return directory where =mix.exs= is located."
   (locate-dominating-file buffer-file-name "mix.exs"))
 
-(defun flycheck-mix-cd-option ()
+(defun flycheck-mix-cd-and-set-mix-env ()
   "Generate change directory command for elixir executable."
-  (format "IEx.Helpers.cd(\"%s\")"
+  (format "IEx.Helpers.cd(\"%s\"); Mix.env(:test)"
           (shell-quote-argument (flycheck-mix-project-root))
           ))
 
