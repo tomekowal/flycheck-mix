@@ -83,7 +83,7 @@
 
 (defun flycheck-mix-cd-and-set-mix-env ()
   "Generate change directory command for elixir executable."
-  (format "IEx.Helpers.cd(\"%s\"); Mix.env(:test)"
+  (format "IEx.Helpers.cd(\"%s\"); Mix.start(); Mix.env(:test)"
           (shell-quote-argument (flycheck-mix-project-root))
           ))
 
