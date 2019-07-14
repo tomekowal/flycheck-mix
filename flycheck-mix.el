@@ -35,8 +35,6 @@
 ;;; Code:
 (require 'flycheck)
 
-;; :command uses source-original, source-inplace copies the file
-;; which makes mix throw errors
 (flycheck-define-checker
  elixir-mix
  "Defines a checker for elixir with mix compile.
