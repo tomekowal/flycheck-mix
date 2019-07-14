@@ -38,9 +38,7 @@
 (flycheck-define-checker
  elixir-mix
  "Defines a checker for elixir with mix compile.
-  There are to conditions that must be true to fulfil the predicate.
-  1. The project must be valid mix project with =mix.exs= file
-  2. The variable =flycheck-mix-enable-checking= must be set to =t="
+  The project must be valid mix project with =mix.exs= file"
  :command ("elixir"
            "-e"
            (eval (flycheck-mix-cd-and-set-mix-env))
