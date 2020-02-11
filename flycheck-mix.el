@@ -1,4 +1,4 @@
-;;; flycheck-mix.el --- Elixir mix flycheck integration -*- lexical-binding: t; -*-
+;;; flycheck-mix.el --- Elixir mix flycheck integration DEPRECATED -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2016  Tomasz Kowal
 
@@ -23,6 +23,8 @@
 
 ;;; Commentary:
 
+;; The package is deprecated and will be removed from melpa
+;; Please use elixir-lsp instead https://elixirforum.com/t/emacs-elixir-setup-configuration-wiki/
 ;; This package adds support for Elixir mix to flycheck.
 ;; To use it, add to your init.el:
 ;;
@@ -90,6 +92,7 @@
 ;;;###autoload
 (defun flycheck-mix-setup ()
   "Setup Flycheck for Elixir."
+  (message "This package is deprecated and will be removed from Melpa. Please, use lsp-mode instead https://elixirforum.com/t/emacs-elixir-setup-configuration-wiki/")
   (add-to-list 'flycheck-checkers 'elixir-mix))
 
 (provide 'flycheck-mix)

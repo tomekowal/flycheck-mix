@@ -1,4 +1,8 @@
 # flycheck-mix
+
+THIS PACKAGE IS DEPRECATED AND WILL BE REMOVED FROM MELPA.
+Please, use (lsp-mode)[https://elixirforum.com/t/emacs-elixir-setup-configuration-wiki] instead.
+
 Support Elixir mix in flycheck
 
 This package adds support for Elixir mix to flycheck.
